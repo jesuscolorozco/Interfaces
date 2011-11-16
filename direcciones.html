@@ -1,0 +1,485 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;  charset=UTF-8">
+        <title>Direcciones</title>
+        <link  rel="stylesheet" href="css/Aristo/Aristo.css" type="text/css"> 
+        <link rel="stylesheet" type="text/css" href="css/reset.css" media="screen" title="html5doctor.com Reset Stylesheet" />
+        <!-- in the CSS3 stylesheet you will find examples of some great new features CSS has to offer -->
+        <link rel="stylesheet" type="text/css" href="css/css3.css" media="screen" />
+        <!-- general stylesheet contains some default styles, you do not need this, but it helps you keep a uniform style -->
+        <link rel="stylesheet" type="text/css" href="css/general.css" media="screen" />
+        <!-- grid's will help you keep your website appealing to your users, view 52framework.com website for documentation -->
+        <link rel="stylesheet" type="text/css" href="css/grid.css" media="screen" />
+        <!-- special styling for forms, this can be used as a form framework on its own -->
+        <link rel="stylesheet" type="text/css" href="css/forms.css" media="screen" />
+    </head>
+    <body  onload="initialize()">
+        <a href="#" id="addDireccion">Agregar Direccion</a>
+        <div id="mapa" title="Buscar direccion en mapa" style="width:400px; height:400px">
+            <div id="map_canvas" style="width:400px; height:400px"></div>
+        </div>
+
+        <div id="dialogDirecciones" title="Direcciones" class="row"> 
+            <p class="validateTips">Algunos campos son requeridos.</p>
+            <div class="col col_6">
+                <form id="direcciones">
+                    <fieldset  class="s_column">
+                        <div>
+                            <label for="descripcion">Descripcion</label>
+                            <input type="text" id="descripcion" name="descripcion" value="">
+                            <em>Ejemplo: Casa de Mama</em>
+                        </div>
+                        <div>
+                            <label for="direccion">Direccion</label>
+                            <textarea id="direccion" name="direccion" value="" class="textarea">
+
+                            </textarea>
+                        </div>
+                        <div>
+                            <label for="codigoPostal">Codigo Postal</label>
+                            <input type="text" id="codigoPostal" name="codigoPostal" value="">
+                        </div>
+
+
+                    </fieldset>
+            </div>
+            <div class="col col_6">
+                <fieldset class="s_column">
+                    <div>
+                        <label for="ciudad">Ciudad</label>
+                        <input type="text" id="ciudad" name="ciudad" value="">
+                    </div>
+                    <div>
+                        <label for="estado">Estado</label>
+                        <input type="text" id="Estado" name="Estado" value="">
+                    </div>
+                    <div>
+                        <label for="pais">Pais</label>
+                        <select name=”pais” id="pais">
+                            <option>Afganistán</option>
+                            <option>Albania</option>
+                            <option>Alemania</option>
+                            <option>Andorra</option>
+                            <option>Anguila</option>
+                            <option>Antigua República Yugoslava de Macedonia</option>
+                            <option>Antigua y Barbuda</option>
+                            <option>Arabia Saudí</option>
+                            <option>Argelia</option>
+                            <option>Argentina</option>
+                            <option>Armenia</option>
+                            <option>Australia</option>
+                            <option>Austria</option>
+                            <option>Azerbaiyán</option>
+                            <option>Bahamas</option>
+                            <option>Bahráin</option>
+                            <option>Bangladesh</option>
+                            <option>Barbados</option>
+                            <option>Bélgica</option>
+                            <option>Belice</option>
+                            <option>Benín</option>
+                            <option>Bermudas</option>
+                            <option>Bielorrusia</option>
+                            <option>Birmania (actualmente Myanmar) </option>
+                            <option>Bolivia</option>
+                            <option>Bosnia y Herzegovina</option>
+                            <option>Botsuana</option>
+                            <option>Brasil</option>
+                            <option>Brunéi</option>
+                            <option>Bulgaria</option>
+                            <option>Burkina Faso</option>
+                            <option>Burundi</option>
+                            <option>Bután</option>
+                            <option>Cabo Verde</option>
+                            <option>Camboya</option>
+                            <option>Camerún</option>
+                            <option>Canadá</option>
+                            <option>Chad</option>
+                            <option>Chequia</option>
+                            <option>Chile</option>
+                            <option>Chile</option>
+                            <option>Chipre</option>
+                            <option>Cisjordania y Franja de Gaza</option>
+                            <option>Colombia</option>
+                            <option>Comoras</option>
+                            <option>Congo</option>
+                            <option>Corea del Norte</option>
+                            <option>Corea del Sur</option>
+                            <option>Costa de Marfil</option>
+                            <option>Costa Rica</option>
+                            <option>Croacia</option>
+                            <option>Cuba</option>
+                            <option>Dinamarca</option>
+                            <option>Dominica</option>
+                            <option>Ecuador</option>
+                            <option>Egipto</option>
+                            <option>El Salvador</option>
+                            <option>Emiratos Árabes Unidos</option>
+                            <option>Eritrea</option>
+                            <option>Eslovaquia</option>
+                            <option>Eslovenia</option>
+                            <option>España</option>
+                            <option>Estados Unidos</option>
+                            <option>Estonia</option>
+                            <option>Estonia</option>
+                            <option>Etiopía</option>
+                            <option>Filipinas</option>
+                            <option>Finlandia</option>
+                            <option>Fiyi</option>
+                            <option>Francia</option>
+                            <option>Gabón</option>
+                            <option>Gambia</option>
+                            <option>Georgia</option>
+                            <option>Ghana</option>
+                            <option>Granada</option>
+                            <option>Grecia</option>
+                            <option>Guadalupe</option>
+                            <option>Guadalupe</option>
+                            <option>Guam</option>
+                            <option>Guatemala</option>
+                            <option>Guinea</option>
+                            <option>Guinea-Bissau</option>
+                            <option>Guinea Ecuatorial</option>
+                            <option>Guyana</option>
+                            <option>Haití</option>
+                            <option>Holanda (Países Bajos)</option>
+                            <option>Honduras</option>
+                            <option>Hong Kong</option>
+                            <option>Hungría</option>
+                            <option>India</option>
+                            <option>Indonesia</option>
+                            <option>Irán</option>
+                            <option>Iraq</option>
+                            <option>Irlanda</option>
+                            <option>Islandia</option>
+                            <option>Islas Marshall</option>
+                            <option>Islas Salomón</option>
+                            <option>Israel</option>
+                            <option>Italia</option>
+                            <option>Jamaica</option>
+                            <option>Japón</option>
+                            <option>Jordania</option>
+                            <option>Kazajistán</option>
+                            <option>Kenia</option>
+                            <option>Kirguizistán</option>
+                            <option>Kiribati</option>
+                            <option>Kuwait</option>
+                            <option>Laos</option>
+                            <option>Lesoto</option>
+                            <option>Letonia</option>
+                            <option>Líbano</option>
+                            <option>Liberia</option>
+                            <option>Libia</option>
+                            <option>Liechtenstein</option>
+                            <option>Lituania</option>
+                            <option>Luxemburgo</option>
+                            <option>Macedonia</option>
+                            <option>Madagascar</option>
+                            <option>Malasia</option>
+                            <option>Malaui</option>
+                            <option>Maldivas</option>
+                            <option>Malí</option>
+                            <option>Malta</option>
+                            <option>Marruecos</option>
+                            <option>Mauritania</option>
+                            <option>Mauricio</option>
+                            <option>México</option>
+                            <option>Micronesia</option>
+                            <option>Moldavia</option>
+                            <option>Mónaco</option>
+                            <option>Mongolia</option>
+                            <option>Montenegro</option>
+                            <option>Mozambique</option>
+                            <option>Myanmar</option>
+                            <option>Namibia</option>
+                            <option>Nauru</option>
+                            <option>Nepal</option>
+                            <option>Nueva Zelanda</option>
+                            <option>Nicaragua</option>
+                            <option>Níger</option>
+                            <option>Nigeria</option>
+                            <option>Niue</option>
+                            <option>Noruega</option>
+                            <option>Omán</option>
+                            <option>Países Bajos</option>
+                            <option>Pakistán</option>
+                            <option>Palau</option>
+                            <option>Palestina</option>
+                            <option>Panamá</option>
+                            <option>Papúa-Nueva Guinea</option>
+                            <option>Paraguay</option>
+                            <option>Perú</option>
+                            <option>Polonia</option>
+                            <option>Portugal</option>
+                            <option>Puerto Rico</option>
+                            <option>Quatar</option>
+                            <option>Reino Unido</option>
+                            <option>República Centroafricana</option>
+                            <option>República Democrática del Congo</option>
+                            <option>República Democrática del Congo</option>
+                            <option>República Dominicana</option>
+                            <option>Rumania</option>
+                            <option>Rusia</option>
+                            <option>Ruanda</option>
+                            <option>Sahara Occidental</option>
+                            <option>Samoa</option>
+                            <option>San Cristóbal y Nieves</option>
+                            <option>San Marino</option>
+                            <option>San Vicente y las Granadinas</option>
+                            <option>Santa Lucía</option>
+                            <option>Santo Tomé y Príncipe</option>
+                            <option>Senegal</option>
+                            <option>Serbia</option>
+                            <option>Seychelles</option>
+                            <option>Sierra Leona</option>
+                            <option>Singapur</option>
+                            <option>Siria</option>
+                            <option>Somalía</option>
+                            <option>Sri Lanka</option>
+                            <option>Sudáfrica</option>
+                            <option>Sudán</option>
+                            <option>Suecia</option>
+                            <option>Suiza</option>
+                            <option>Surinam</option>
+                            <option>Suazilandia</option>
+                            <option>Tailandia</option>
+                            <option>Taiwán</option>
+                            <option>Tanzania</option>
+                            <option>Tayikistán</option>
+                            <option>Timor Oriental</option>
+                            <option>Togo</option>
+                            <option>Tonga</option>
+                            <option>Trinidad y Tobago</option>
+                            <option>Túnez</option>
+                            <option>Turkmenistán</option>
+                            <option>Turquía</option>
+                            <option>Tuvalu</option>
+                            <option>Ucrania</option>
+                            <option>Uganda</option>
+                            <option>Uruguay</option>
+                            <option>Uzbekistán</option>
+                            <option>Vanuatu</option>
+                            <option>Vaticano</option>
+                            <option>Venezuela</option>
+                            <option>Vietnam</option>
+                            <option>Yemen</option>
+                            <option>Yibuti</option>
+                            <option>Yugoslavia</option>
+                            <option>Zambia</option>
+                            <option>Zimbabue</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="ubicacionGeografica">Latitud/Longitud</label>
+                        <input type="text" id="ubicacionGeografica" name="ubicacionGeografica" value="" placeholder="Has click para buscar en Google Maps">
+                        <em>Haz click en la caja de arriba para buscar en Google Maps</em>
+                    </div>  
+                    <div>
+                        <label>Visible en perfil publico</label>
+                        <input type="checkbox" id="visible" class="iphone-style-checkbox" checked="checked" />
+                    </div>
+                </fieldset>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
+
+<script type="text/javascript" src="js/modernizr-1.7.min.js"></script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript" src="js/jquery-1.6.2.min.js"></script>
+<script type="text/javascript" src="js/ui/jquery.ui.core.min.js"></script>
+<script type="text/javascript" src="js/ui/jquery.ui.position.min.js"></script>
+<script type="text/javascript" src="js/ui/jquery.ui.widget.min.js"></script>
+<script type="text/javascript" src="js/ui/jquery.ui.button.min.js"></script>
+<script type="text/javascript" src="js/ui/jquery.ui.dialog.min.js"></script>
+<script type="text/javascript" src="js/jquery.backgroundPosition.js"></script>
+
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        
+        var descripcion = $( "#descripcion" ), direccion = $('#direccion'), 
+        codigoPostal = $('#codigoPostal'), ciudad = $('#ciudad'), estado = $('#estado'),
+        pais = $('#pais'),ubicacionGeografica = $('#ubicacionGeografica'),
+        visibilidad = $('#visible'),
+        allFields = $( [] ).add( descripcion ).add(direccion).add(codigoPostal)
+        .add(ciudad).add(estado).add(pais).add(ubicacionGeografica).add(visibilidad),
+        tips = $( ".validateTips" );
+        
+        //Destruyo los dialogs creados anteriormente
+        
+        $( "#dialogDirecciones" ).dialog( "destroy" );
+        $('#mapa').dialog('destroy');
+        
+        //Eventos de apertura de los dialogs
+        
+        $('#addDireccion').click(function(){
+            $('#dialogDirecciones').dialog('open');
+        });
+        
+        $('#ubicacionGeografica').click(function(){
+            $('#mapa').dialog('open');
+        });
+		
+      
+        function updateTips( t ) {
+            tips
+            .text( t )
+            .addClass( "ui-state-highlight" );
+            setTimeout(function() {
+                tips.removeClass( "ui-state-highlight", 1500 );
+            }, 500 );
+        }
+
+        function checkLength( o, n, min, max ) {
+            if ( o.val().length > max || o.val().length < min ) {
+                o.addClass( "ui-state-error" );
+                updateTips( "El tamano de " + n + " debe ser entre " +
+                    min + " y " + max + "." );
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        function checkRegexp( o, regexp, n ) {
+            if ( !( regexp.test( o.val() ) ) ) {
+                o.addClass( "ui-state-error" );
+                updateTips( n );
+                return false;
+            } else {
+                return true;
+            }
+        }
+		
+        $('#mapa').dialog({
+            autoOpen: false,
+            width: 430,
+            height: 460,
+            modal: true 
+        });     
+         	
+        $('#dialogDirecciones').dialog({
+            autoOpen: false,
+            width: 750,
+            modal: true,
+            buttons: {
+                Aceptar: function() {
+                    var bValid = true;
+                    allFields.removeClass( "ui-state-error" );
+
+                    bValid = bValid && checkLength( descripcion, "descripcion", 10, 50 );
+                    bValid = bValid && checkLength( direccion, "direccion", 10, 50 );
+              
+                    bValid = bValid && checkRegexp( descripcion, /([A-Za-z0-9.-]+)/, "La descripcion debe tener  a-z, 0-9  empezar por una letra." );
+                    bValid = bValid && checkRegexp( direccion, /([A-Za-z0-9.-]+)/, "La direccion debe tener  of a-z, 0-9, underscores, begin with a letter." );
+                    // From jquery.validate.js (by joern), contributed by Scott Gonzalez: http://projects.scottsplayground.com/email_address_validation/
+                    //bValid = bValid && checkRegexp( email, /^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i, "eg. ui@jquery.com" );
+                    //bValid = bValid && checkRegexp( password, /^([0-9a-zA-Z])+$/, "Password field only allow : a-z 0-9" );
+
+                    if ( bValid ) {
+                        console.log('Todo fino')
+                        $( this ).dialog( "close" );
+                    }
+                },
+                Cancelar: function(){
+                    $(this).dialog('close');
+                }
+            },
+            close: function() {
+                allFields.val( "" ).removeClass( "ui-state-error" );
+            }
+        });
+    });
+
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+				
+        $('.iphone-style').live('click', function() {
+				
+            checkboxID		= '#' + $(this).attr('rel');
+
+            if($(checkboxID)[0].checked == false) {
+						
+                $(this).animate({backgroundPosition: '0% 100%'});
+						
+                $(checkboxID)[0].checked = true;
+                $(this).removeClass('off').addClass('on');
+						
+            } else {
+						
+                $(this).animate({backgroundPosition: '100% 0%'});
+						
+                $(checkboxID)[0].checked = false;
+                $(this).removeClass('on').addClass('off');
+						
+            }
+        });
+			
+        $('.firerift-style').live('click', function() {
+				
+            checkboxID		= '#' + $(this).attr('rel');
+
+            if($(checkboxID)[0].checked == false) {
+					
+                $(checkboxID)[0].checked = true;
+                $(this).removeClass('off').addClass('on');
+						
+            } else {
+						
+                $(checkboxID)[0].checked = false;
+                $(this).removeClass('on').addClass('off');
+						
+            }
+        });
+				
+        $('.iphone-style-checkbox, .firerift-style-checkbox').each(function() {
+					
+            thisID		= $(this).attr('id');
+            thisClass	= $(this).attr('class');
+
+            switch(thisClass) {
+                case "iphone-style-checkbox":
+                    setClass = "iphone-style";
+                    break;
+                case "firerift-style-checkbox":
+                    setClass = "firerift-style";
+                    break;
+            }
+					
+            $(this).addClass('hidden');
+					
+            if($(this)[0].checked == true)
+                $(this).after('<div class="'+ setClass +' on" rel="'+ thisID +'">&nbsp;</div>');
+            else
+                $(this).after('<div class="'+ setClass +' off" rel="'+ thisID +'">&nbsp;</div>');
+        });
+    });
+			
+</script>
+
+<script type="text/javascript">
+    var myOptions, latlng, map;
+ 
+    function initialize() {
+        latlng = new google.maps.LatLng(-34.397, 150.644);
+        myOptions = {
+            zoom: 8,
+            center: latlng,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+        google.maps.event.addListener(map, 'click', function(event) {
+            $('#ubicacionGeografica').val(event.latLng);
+            $('#mapa').dialog('close');
+        });
+    }
+ 
+
+</script>
+

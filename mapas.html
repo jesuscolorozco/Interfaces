@@ -1,0 +1,40 @@
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript" src="js/jquery-1.6.2.min.js"></script>
+<script type="text/javascript">
+var myOptions, latlng, map;
+ 
+function initialize() {
+  latlng = new google.maps.LatLng(-34.397, 150.644);
+  myOptions = {
+    zoom: 8,
+    center: latlng,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+  map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+  google.maps.event.addListener(map, 'click', function(event) {
+    alert(event.latLng);
+  });
+}
+ 
+$(document).ready(function(){
+  $("#buttonver").click(function(){
+    var latVar,lonVar;
+    latVar = $("#lat").val();
+    lonVar = $("#lon").val();
+    latlng = new google.maps.LatLng(latVar, lonVar);
+    myOptions.center=latlng;
+    map.setCenter(latlng);
+  });
+});
+</script>
+</head>
+<body onload="initialize()">
+<div id="map_canvas" style="width:400px; height:400px"></div>
+<label for="lat">latitud</label><input type="text" id="lat" name="lat" value="38.5"/>
+<label for="lon">longitud</label><input type="text" id="lon" name="lon" value="-0.5"/>
+<input type="button" id="buttonver" value="ver" />
+</body>
+</html>
