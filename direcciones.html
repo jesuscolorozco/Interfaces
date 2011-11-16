@@ -277,7 +277,7 @@
                     </div>  
                     <div>
                         <label>Visible en perfil publico</label>
-                        <input type="checkbox" id="visible" class="iphone-style-checkbox" checked="checked" />
+                        <input type="checkbox" id="visibilidad" class="iphone-style-checkbox" checked="checked" />
                     </div>
                 </fieldset>
             </div>
@@ -304,7 +304,7 @@
         var descripcion = $( "#descripcion" ), direccion = $('#direccion'), 
         codigoPostal = $('#codigoPostal'), ciudad = $('#ciudad'), estado = $('#estado'),
         pais = $('#pais'),ubicacionGeografica = $('#ubicacionGeografica'),
-        visibilidad = $('#visible'),
+        visibilidad = $('#visibilidad'),
         allFields = $( [] ).add( descripcion ).add(direccion).add(codigoPostal)
         .add(ciudad).add(estado).add(pais).add(ubicacionGeografica).add(visibilidad),
         tips = $( ".validateTips" );
@@ -479,7 +479,5 @@
             $('#mapa').dialog('close');
         });
     }
- 
-
 </script>
 

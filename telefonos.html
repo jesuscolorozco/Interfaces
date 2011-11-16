@@ -1,0 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;  charset=UTF-8">
+        <title>Telefonos</title>
+        <link  rel="stylesheet" href="css/Aristo/Aristo.css" type="text/css"> 
+        <link rel="stylesheet" type="text/css" href="css/reset.css" media="screen" title="html5doctor.com Reset Stylesheet" />
+        <!-- in the CSS3 stylesheet you will find examples of some great new features CSS has to offer -->
+        <link rel="stylesheet" type="text/css" href="css/css3.css" media="screen" />
+        <!-- general stylesheet contains some default styles, you do not need this, but it helps you keep a uniform style -->
+        <link rel="stylesheet" type="text/css" href="css/general.css" media="screen" />
+        <!-- grid's will help you keep your website appealing to your users, view 52framework.com website for documentation -->
+        <link rel="stylesheet" type="text/css" href="css/grid.css" media="screen" />
+        <!-- special styling for forms, this can be used as a form framework on its own -->
+        <link rel="stylesheet" type="text/css" href="css/forms.css" media="screen" />
+    </head>
+    <body>
+        <a href="#" id="addTelefono">Agregar Telefono</a>
+
+        <div id="dialogTelefono" title="Telefonos">  
+            <p class="validateTips">Algunos campos son requeridos.</p>
+
+            <form id="telefonos" >
+                <fieldset  class="s_column">
+                    <div>
+                        <label for="descripcion">Descripcion</label>
+                        <input type="text" id="descripcion" name="descripcion" value="">
+                        <em>Ejemplo: Casa de Mama</em>
+                    </div>
+                    <div>
+                        <label for="tipo">Tipo</label>
+                        <select name=”tipo” id="tipo">
+                            <option>Movil</option>
+                            <option>Fijo</option>
+                            <option>Fax</option>
+                            <option>VozIP</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="noTelefonico">No. Telefonico</label>
+                        <input type="text" id="noTelefonico" name="noTelefonico" value="">
+                    </div>
+                    <div>
+                        <label>Visible en perfil publico</label>
+                        <input type="checkbox" id="visibilidad" class="iphone-style-checkbox" checked="checked" />
+                    </div>
+
+
+                </fieldset>
+            </form>
+
+        </div>
+    </body>
+
+</html>
+
+<script type="text/javascript" src="js/modernizr-1.7.min.js"></script>
+<script type="text/javascript" src="js/jquery-1.6.2.min.js"></script>
+<script type="text/javascript" src="js/ui/jquery.ui.core.min.js"></script>
+<script type="text/javascript" src="js/ui/jquery.ui.position.min.js"></script>
+<script type="text/javascript" src="js/ui/jquery.ui.widget.min.js"></script>
+<script type="text/javascript" src="js/ui/jquery.ui.button.min.js"></script>
+<script type="text/javascript" src="js/ui/jquery.ui.dialog.min.js"></script>
+<script type="text/javascript" src="js/jquery.backgroundPosition.js"></script>
+
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        
+        var descripcion = $( "#descripcion" ), tipo = $('#tipo'), 
+        noTelefonico = $('#noTelefonico'), visibilidad = $('#visibilidad'),
+        allFields = $( [] ).add( descripcion ).add(tipo).add(noTelefonico)
+        .add(visibilidad),
+        tips = $( ".validateTips" );
+        
+        //Destruyo los dialogs creados anteriormente
+        
+        $( "#dialogTelefono" ).dialog( "destroy" );
+     
+        
+        //Eventos de apertura de los dialogs
+        
+        $('#addTelefono').click(function(){
+            $('#dialogTelefono').dialog('open');
+        });
+        
+        function updateTips( t ) {
+            tips
+            .text( t )
+            .addClass( "ui-state-highlight" );
+            setTimeout(function() {
+                tips.removeClass( "ui-state-highlight", 1500 );
+            }, 500 );
+        }
+
+        function checkLength( o, n, min, max ) {
+            if ( o.val().length > max || o.val().length < min ) {
+                o.addClass( "ui-state-error" );
+                updateTips( "El tamano de " + n + " debe ser entre " +
+                    min + " y " + max + "." );
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        function checkRegexp( o, regexp, n ) {
+            if ( !( regexp.test( o.val() ) ) ) {
+                o.addClass( "ui-state-error" );
+                updateTips( n );
+                return false;
+            } else {
+                return true;
+            }
+        }
+		
+ 
+         	
+        $('#dialogTelefono').dialog({
+            autoOpen: false,
+            width: 400,
+            height: 440,
+            modal: true,
+            buttons: {
+                Aceptar: function() {
+                    var bValid = true;
+                    allFields.removeClass( "ui-state-error" );
+
+                    bValid = bValid && checkLength( descripcion, "descripcion", 10, 50 );
+                    bValid = bValid && checkLength( noTelefonico, "direccion", 12, 15 );
+              
+                    bValid = bValid && checkRegexp( descripcion, /([A-Za-z0-9.-]+)/, "La descripcion debe tener  a-z, 0-9  empezar por una letra." );
+                    bValid = bValid && checkRegexp( noTelefonico, /([0-9]+)/, "El Numero telefoncio solo debe contener numeros." );
+                    // From jquery.validate.js (by joern), contributed by Scott Gonzalez: http://projects.scottsplayground.com/email_address_validation/
+                    //bValid = bValid && checkRegexp( email, /^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i, "eg. ui@jquery.com" );
+                    //bValid = bValid && checkRegexp( password, /^([0-9a-zA-Z])+$/, "Password field only allow : a-z 0-9" );
+
+                    if ( bValid ) {
+                        console.log('Todo fino')
+                        $( this ).dialog( "close" );
+                    }
+                },
+                Cancelar: function(){
+                    $(this).dialog('close');
+                }
+            },
+            close: function() {
+                allFields.val( "" ).removeClass( "ui-state-error" );
+            }
+        });
+    });
+
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+				
+        $('.iphone-style').live('click', function() {
+				
+            checkboxID		= '#' + $(this).attr('rel');
+
+            if($(checkboxID)[0].checked == false) {
+						
+                $(this).animate({backgroundPosition: '0% 100%'});
+						
+                $(checkboxID)[0].checked = true;
+                $(this).removeClass('off').addClass('on');
+						
+            } else {
+						
+                $(this).animate({backgroundPosition: '100% 0%'});
+						
+                $(checkboxID)[0].checked = false;
+                $(this).removeClass('on').addClass('off');
+						
+            }
+        });
+			
+       
+				
+        $('.iphone-style-checkbox, .firerift-style-checkbox').each(function() {
+					
+            thisID		= $(this).attr('id');
+            thisClass	= $(this).attr('class');
+
+            switch(thisClass) {
+                case "iphone-style-checkbox":
+                    setClass = "iphone-style";
+                    break;
+                case "firerift-style-checkbox":
+                    setClass = "firerift-style";
+                    break;
+            }
+					
+            $(this).addClass('hidden');
+					
+            if($(this)[0].checked == true)
+                $(this).after('<div class="'+ setClass +' on" rel="'+ thisID +'">&nbsp;</div>');
+            else
+                $(this).after('<div class="'+ setClass +' off" rel="'+ thisID +'">&nbsp;</div>');
+        });
+    });
+			
+</script>
+
+
