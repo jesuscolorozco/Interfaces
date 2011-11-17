@@ -45,7 +45,7 @@ form div input.invalid {border-bottom:1px solid #f00;}
 
 /* single column form styling */
 
-form .s_column div {height:auto; margin-bottom:3px; padding:0px;}
+form .s_column div {height:auto; min-height: 28px; margin-bottom:3px; padding:0px;}
 form .s_column div label {float:none; width:100%;}
 form .s_column div input {width:98%; float:none;}
 
