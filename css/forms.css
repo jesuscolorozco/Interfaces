@@ -49,13 +49,15 @@ form .s_column div {height:auto; min-height: 28px; margin-bottom:3px; padding:0p
 form .s_column div label {float:none; width:100%;}
 form .s_column div input {width:98%; float:none;}
 
+.validateTips { border: 1px solid transparent; padding: 0.3em; }
+
 /* Checkbox style */
 
 .iphone-style  {
 	display: block;
 	width: 87px;
 	height: 28px;
-	background: url('../images/check-square.png') no-repeat;
+	background: url('images/check-square.png') no-repeat;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
